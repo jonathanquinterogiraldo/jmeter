@@ -2640,17 +2640,16 @@ vars.put(&quot;teenageNumber&quot;,&quot;0&quot;);
 vars.put(&quot;childrenNumber&quot;,&quot;1&quot;);
 vars.put(&quot;infantsNumber&quot;,&quot;2&quot;);
 vars.put(&quot;paymentMethod&quot;,&quot;MC&quot;); // TO BE DEFINED
-vars.put(&quot;servicesToSell&quot;,&quot;{\&quot;itemsToSell\&quot;: [ ] }&quot;); // {\&quot;itemsToSell\&quot;:[{\&quot;paxNumber\&quot;:\&quot;N\&quot;,\&quot;serviceCodes\&quot;:[\&quot;XXX\&quot;,\&quot;YYY\&quot;,...]}]}
+vars.put(&quot;servicesToSell&quot;,&quot;{\&quot;itemsToSell\&quot;: [ ] }&quot;); // {\&quot;itemsToSell\&quot;:[{\&quot;paxNumber\&quot;:\&quot;N\&quot;,\&quot;serviceCodes\&quot;:[\&quot;XXX\&quot;,\&quot;YYY\&quot;,...]}]} 
+SampleResult.setIgnore()
 
 //Expectations
 vars.put(&quot;expectedPaxCount&quot;, 5);
 vars.put(&quot;expectedJourneysCount&quot;, 1);
 vars.put(&quot;expectedPaxChildCount&quot;, 1);
-
-vars.put(&quot;expectedPaxAdultCount&quot;, 2);
-
-vars.put(&quot;expectedPaxInfantCount&quot;, 2);
-SampleResult.setIgnore()</stringProp>
+vars.put(&quot;expectedPaxAdultCount&quot;, 1);
+vars.put(&quot;expectedPaxInfantCount&quot;, 1);
+</stringProp>
           </JSR223Sampler>
           <hashTree/>
         </hashTree>
@@ -4455,7 +4454,16 @@ vars.put(&quot;adultsIndex&quot;, adultsIndex);</stringProp>
                 <boolProp name="ISREGEX">true</boolProp>
               </JSONPathAssertion>
               <hashTree/>
-              <JSONPathAssertion guiclass="JSONPathAssertionGui" testclass="JSONPathAssertion" testname="Booking has journey" enabled="true">
+              <JSONPathAssertion guiclass="JSONPathAssertionGui" testclass="JSONPathAssertion" testname="Booking is one way" enabled="true">
+                <stringProp name="JSON_PATH">$.booking.journeys.size()</stringProp>
+                <stringProp name="EXPECTED_VALUE">${expectedJourneysCount}</stringProp>
+                <boolProp name="JSONVALIDATION">true</boolProp>
+                <boolProp name="EXPECT_NULL">false</boolProp>
+                <boolProp name="INVERT">false</boolProp>
+                <boolProp name="ISREGEX">false</boolProp>
+              </JSONPathAssertion>
+              <hashTree/>
+              <JSONPathAssertion guiclass="JSONPathAssertionGui" testclass="JSONPathAssertion" testname="Booking is round trip" enabled="true">
                 <stringProp name="JSON_PATH">$.booking.journeys.size()</stringProp>
                 <stringProp name="EXPECTED_VALUE">${expectedJourneysCount}</stringProp>
                 <boolProp name="JSONVALIDATION">true</boolProp>
@@ -6973,7 +6981,7 @@ SampleResult.setIgnore()
           </JSR223Sampler>
           <hashTree/>
         </hashTree>
-        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="[TESTCASE] OW  1ADT FLY  HOLD" enabled="true"/>
+        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="[TESTCASE] OW  1ADT FLY  HOLD" enabled="false"/>
         <hashTree>
           <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="[SET] One Way" enabled="true">
             <stringProp name="scriptLanguage">javascript</stringProp>
@@ -6991,6 +6999,11 @@ vars.put(&quot;childrenNumber&quot;,&quot;0&quot;);
 vars.put(&quot;infantsNumber&quot;,&quot;0&quot;);
 vars.put(&quot;paymentMethod&quot;,&quot;MC&quot;); // TO BE DEFINED
 vars.put(&quot;servicesToSell&quot;,&quot;{\&quot;itemsToSell\&quot;: [ ] }&quot;); // {\&quot;itemsToSell\&quot;:[{\&quot;paxNumber\&quot;:\&quot;N\&quot;,\&quot;serviceCodes\&quot;:[\&quot;XXX\&quot;,\&quot;YYY\&quot;,...]}]} 
+
+//Expectations
+vars.put(&quot;expectedPaxCount&quot;, 1);
+vars.put(&quot;expectedJourneysCount&quot;, 1);
+vars.put(&quot;expectedoutboundProductClass&quot;, &apos;YA&apos;);
 SampleResult.setIgnore()</stringProp>
           </JSR223Sampler>
           <hashTree/>
@@ -7015,6 +7028,11 @@ vars.put(&quot;childrenNumber&quot;,&quot;0&quot;);
 vars.put(&quot;infantsNumber&quot;,&quot;0&quot;);
 vars.put(&quot;paymentMethod&quot;,&quot;MC&quot;);  // TO BE DEFINED
 vars.put(&quot;servicesToSell&quot;,&quot;{\&quot;itemsToSell\&quot;: [ ] }&quot;); // {\&quot;itemsToSell\&quot;:[{\&quot;paxNumber\&quot;:\&quot;N\&quot;,\&quot;serviceCodes\&quot;:[\&quot;XXX\&quot;,\&quot;YYY\&quot;,...]}]} 
+
+//Expectations
+vars.put(&quot;expectedPaxCount&quot;, 1);
+vars.put(&quot;expectedJourneysCount&quot;, 2);
+vars.put(&quot;expectedoutboundProductClass&quot;, &apos;YA&apos;);
 SampleResult.setIgnore()
 </stringProp>
           </JSR223Sampler>
@@ -7038,11 +7056,16 @@ vars.put(&quot;childrenNumber&quot;,&quot;0&quot;);
 vars.put(&quot;infantsNumber&quot;,&quot;0&quot;);
 vars.put(&quot;paymentMethod&quot;,&quot;MC&quot;); // TO BE DEFINED
 vars.put(&quot;servicesToSell&quot;,&quot;{\&quot;itemsToSell\&quot;: [ ] }&quot;); // {\&quot;itemsToSell\&quot;:[{\&quot;paxNumber\&quot;:\&quot;N\&quot;,\&quot;serviceCodes\&quot;:[\&quot;XXX\&quot;,\&quot;YYY\&quot;,...]}]} 
+
+//Expectations
+vars.put(&quot;expectedPaxCount&quot;, 1);
+vars.put(&quot;expectedJourneysCount&quot;, 1);
+vars.put(&quot;expectedoutboundProductClass&quot;, &apos;YB&apos;);
 SampleResult.setIgnore()</stringProp>
           </JSR223Sampler>
           <hashTree/>
         </hashTree>
-        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="[TESTCASE] RT  1ADT FLY+  HOLD" enabled="false"/>
+        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="[TESTCASE] RT  1ADT FLY+  HOLD" enabled="true"/>
         <hashTree>
           <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="[SET] Round Trip" enabled="true">
             <stringProp name="scriptLanguage">javascript</stringProp>
@@ -7062,6 +7085,11 @@ vars.put(&quot;childrenNumber&quot;,&quot;0&quot;);
 vars.put(&quot;infantsNumber&quot;,&quot;0&quot;);
 vars.put(&quot;paymentMethod&quot;,&quot;MC&quot;);  // TO BE DEFINED
 vars.put(&quot;servicesToSell&quot;,&quot;{\&quot;itemsToSell\&quot;: [ ] }&quot;); // {\&quot;itemsToSell\&quot;:[{\&quot;paxNumber\&quot;:\&quot;N\&quot;,\&quot;serviceCodes\&quot;:[\&quot;XXX\&quot;,\&quot;YYY\&quot;,...]}]} 
+
+//Expectations
+vars.put(&quot;expectedPaxCount&quot;, 1);
+vars.put(&quot;expectedJourneysCount&quot;, 2);
+vars.put(&quot;expectedoutboundProductClass&quot;, &apos;YB&apos;);
 SampleResult.setIgnore()
 </stringProp>
           </JSR223Sampler>
@@ -8794,6 +8822,33 @@ vars.put(&quot;adultsIndex&quot;, adultsIndex);</stringProp>
                 <boolProp name="EXPECT_NULL">false</boolProp>
                 <boolProp name="INVERT">false</boolProp>
                 <boolProp name="ISREGEX">true</boolProp>
+              </JSONPathAssertion>
+              <hashTree/>
+              <JSONPathAssertion guiclass="JSONPathAssertionGui" testclass="JSONPathAssertion" testname="Booking is one way" enabled="true">
+                <stringProp name="JSON_PATH">$.booking.journeys.size()</stringProp>
+                <stringProp name="EXPECTED_VALUE">${expectedJourneysCount}</stringProp>
+                <boolProp name="JSONVALIDATION">true</boolProp>
+                <boolProp name="EXPECT_NULL">false</boolProp>
+                <boolProp name="INVERT">false</boolProp>
+                <boolProp name="ISREGEX">false</boolProp>
+              </JSONPathAssertion>
+              <hashTree/>
+              <JSONPathAssertion guiclass="JSONPathAssertionGui" testclass="JSONPathAssertion" testname="Booking has only one pax" enabled="true">
+                <stringProp name="JSON_PATH">$.booking.pax.size()</stringProp>
+                <stringProp name="EXPECTED_VALUE">${expectedPaxCount}</stringProp>
+                <boolProp name="JSONVALIDATION">true</boolProp>
+                <boolProp name="EXPECT_NULL">false</boolProp>
+                <boolProp name="INVERT">false</boolProp>
+                <boolProp name="ISREGEX">false</boolProp>
+              </JSONPathAssertion>
+              <hashTree/>
+              <JSONPathAssertion guiclass="JSONPathAssertionGui" testclass="JSONPathAssertion" testname="Booking outbound Product Class" enabled="true">
+                <stringProp name="JSON_PATH">$.booking.journeys[*].fares[*].productClass</stringProp>
+                <stringProp name="EXPECTED_VALUE">${expectedoutboundProductClass}</stringProp>
+                <boolProp name="JSONVALIDATION">true</boolProp>
+                <boolProp name="EXPECT_NULL">false</boolProp>
+                <boolProp name="INVERT">false</boolProp>
+                <boolProp name="ISREGEX">false</boolProp>
               </JSONPathAssertion>
               <hashTree/>
               <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
@@ -11348,7 +11403,7 @@ SampleResult.setIgnore()
           </JSR223Sampler>
           <hashTree/>
         </hashTree>
-        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="[TESTCASE] RT  1ADT  HOLD - DOMESTIC - IQAMA" enabled="true"/>
+        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="[TESTCASE] RT  1ADT  HOLD - DOMESTIC - IQAMA" enabled="false"/>
         <hashTree>
           <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="[SET] Round Trip" enabled="true">
             <stringProp name="scriptLanguage">javascript</stringProp>
@@ -11376,6 +11431,10 @@ vars.put(&quot;docIssuedCountry&quot;,&quot;GB&quot;);
 vars.put(&quot;docExpirationDate&quot;,&quot;2024-09-11&quot;);
 vars.put(&quot;birthDate&quot;,&quot;1968-05-19&quot;);
 
+//Expectations
+vars.put(&quot;expectedPaxCount&quot;, 1);
+vars.put(&quot;expectedJourneysCount&quot;, 2);
+vars.put(&quot;expecteddocType&quot;, &apos;I&apos;);
 SampleResult.setIgnore()</stringProp>
           </JSR223Sampler>
           <hashTree/>
@@ -11406,11 +11465,16 @@ vars.put(&quot;docIssuedCountry&quot;,&quot;SA&quot;);
 vars.put(&quot;docExpirationDate&quot;,&quot;2024-09-11&quot;);
 vars.put(&quot;birthDate&quot;,&quot;1992-07-24&quot;);
 
-SampleResult.setIgnore()</stringProp>
+//Expectations
+vars.put(&quot;expectedPaxCount&quot;, 1);
+vars.put(&quot;expectedJourneysCount&quot;, 1);
+vars.put(&quot;expecteddocType&quot;, &apos;N&apos;);
+SampleResult.setIgnore()
+</stringProp>
           </JSR223Sampler>
           <hashTree/>
         </hashTree>
-        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="[TESTCASE] RT  1ADT  HOLD - DOMESTIC - PASSPORT" enabled="false"/>
+        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="[TESTCASE] RT  1ADT  HOLD - DOMESTIC - PASSPORT" enabled="true"/>
         <hashTree>
           <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="[SET] Round Trip" enabled="true">
             <stringProp name="scriptLanguage">javascript</stringProp>
@@ -11438,7 +11502,13 @@ vars.put(&quot;docIssuedCountry&quot;,&quot;AR&quot;);
 vars.put(&quot;docExpirationDate&quot;,&quot;2024-09-11&quot;);
 vars.put(&quot;birthDate&quot;,&quot;1968-05-19&quot;);
 
-SampleResult.setIgnore()</stringProp>
+//Expectations
+vars.put(&quot;expectedPaxCount&quot;, 1);
+vars.put(&quot;expectedJourneysCount&quot;, 2);
+vars.put(&quot;expecteddocType&quot;, &apos;P&apos;);
+SampleResult.setIgnore()
+
+</stringProp>
           </JSR223Sampler>
           <hashTree/>
         </hashTree>
@@ -13171,6 +13241,33 @@ vars.put(&quot;adultsIndex&quot;, adultsIndex);</stringProp>
                 <boolProp name="EXPECT_NULL">false</boolProp>
                 <boolProp name="INVERT">false</boolProp>
                 <boolProp name="ISREGEX">true</boolProp>
+              </JSONPathAssertion>
+              <hashTree/>
+              <JSONPathAssertion guiclass="JSONPathAssertionGui" testclass="JSONPathAssertion" testname="Booking has only one pax" enabled="true">
+                <stringProp name="JSON_PATH">$.booking.pax.size()</stringProp>
+                <stringProp name="EXPECTED_VALUE">${expectedPaxCount}</stringProp>
+                <boolProp name="JSONVALIDATION">true</boolProp>
+                <boolProp name="EXPECT_NULL">false</boolProp>
+                <boolProp name="INVERT">false</boolProp>
+                <boolProp name="ISREGEX">false</boolProp>
+              </JSONPathAssertion>
+              <hashTree/>
+              <JSONPathAssertion guiclass="JSONPathAssertionGui" testclass="JSONPathAssertion" testname="Booking has document" enabled="true">
+                <stringProp name="JSON_PATH">$.booking.pax[*].documents[*].type</stringProp>
+                <stringProp name="EXPECTED_VALUE">${expecteddocType}</stringProp>
+                <boolProp name="JSONVALIDATION">true</boolProp>
+                <boolProp name="EXPECT_NULL">false</boolProp>
+                <boolProp name="INVERT">false</boolProp>
+                <boolProp name="ISREGEX">false</boolProp>
+              </JSONPathAssertion>
+              <hashTree/>
+              <JSONPathAssertion guiclass="JSONPathAssertionGui" testclass="JSONPathAssertion" testname="Booking is one way" enabled="true">
+                <stringProp name="JSON_PATH">$.booking.journeys.size()</stringProp>
+                <stringProp name="EXPECTED_VALUE">${expectedJourneysCount}</stringProp>
+                <boolProp name="JSONVALIDATION">true</boolProp>
+                <boolProp name="EXPECT_NULL">false</boolProp>
+                <boolProp name="INVERT">false</boolProp>
+                <boolProp name="ISREGEX">false</boolProp>
               </JSONPathAssertion>
               <hashTree/>
               <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
