@@ -4464,7 +4464,7 @@ vars.put(&quot;adultsIndex&quot;, adultsIndex);</stringProp>
                 <boolProp name="ISREGEX">false</boolProp>
               </JSONPathAssertion>
               <hashTree/>
-              <JSONPathAssertion guiclass="JSONPathAssertionGui" testclass="JSONPathAssertion" testname="Booking has two pax" enabled="true">
+              <JSONPathAssertion guiclass="JSONPathAssertionGui" testclass="JSONPathAssertion" testname="Booking has pax" enabled="true">
                 <stringProp name="JSON_PATH">$.booking.pax.size()</stringProp>
                 <stringProp name="EXPECTED_VALUE">${expectedPaxCount}</stringProp>
                 <boolProp name="JSONVALIDATION">true</boolProp>
@@ -4473,16 +4473,7 @@ vars.put(&quot;adultsIndex&quot;, adultsIndex);</stringProp>
                 <boolProp name="ISREGEX">false</boolProp>
               </JSONPathAssertion>
               <hashTree/>
-              <JSONPathAssertion guiclass="JSONPathAssertionGui" testclass="JSONPathAssertion" testname="Booking has three pax" enabled="true">
-                <stringProp name="JSON_PATH">$.booking.pax.size()</stringProp>
-                <stringProp name="EXPECTED_VALUE">${expectedPaxCount}</stringProp>
-                <boolProp name="JSONVALIDATION">true</boolProp>
-                <boolProp name="EXPECT_NULL">false</boolProp>
-                <boolProp name="INVERT">false</boolProp>
-                <boolProp name="ISREGEX">false</boolProp>
-              </JSONPathAssertion>
-              <hashTree/>
-              <JSONPathAssertion guiclass="JSONPathAssertionGui" testclass="JSONPathAssertion" testname="Booking has only one adult pax" enabled="true">
+              <JSONPathAssertion guiclass="JSONPathAssertionGui" testclass="JSONPathAssertion" testname="Booking has adult pax" enabled="true">
                 <stringProp name="JSON_PATH">$.booking.pax[*].type[?(@.code == &apos;ADT&apos;)].size()</stringProp>
                 <stringProp name="EXPECTED_VALUE">${expectedPaxAdultCount}</stringProp>
                 <boolProp name="JSONVALIDATION">true</boolProp>
@@ -4491,7 +4482,7 @@ vars.put(&quot;adultsIndex&quot;, adultsIndex);</stringProp>
                 <boolProp name="ISREGEX">false</boolProp>
               </JSONPathAssertion>
               <hashTree/>
-              <JSONPathAssertion guiclass="JSONPathAssertionGui" testclass="JSONPathAssertion" testname="Booking has only one child pax" enabled="true">
+              <JSONPathAssertion guiclass="JSONPathAssertionGui" testclass="JSONPathAssertion" testname="Booking has child pax" enabled="true">
                 <stringProp name="JSON_PATH">$.booking.pax[*].type[?(@.code == &apos;CHD&apos;)].size()</stringProp>
                 <stringProp name="EXPECTED_VALUE">${expectedPaxChildCount}</stringProp>
                 <boolProp name="JSONVALIDATION">true</boolProp>
@@ -4500,7 +4491,7 @@ vars.put(&quot;adultsIndex&quot;, adultsIndex);</stringProp>
                 <boolProp name="ISREGEX">false</boolProp>
               </JSONPathAssertion>
               <hashTree/>
-              <JSONPathAssertion guiclass="JSONPathAssertionGui" testclass="JSONPathAssertion" testname="Booking has only one infant pax" enabled="true">
+              <JSONPathAssertion guiclass="JSONPathAssertionGui" testclass="JSONPathAssertion" testname="Booking has infant pax" enabled="true">
                 <stringProp name="JSON_PATH">$.booking.pax[*].type[?(@.code == &apos;INF&apos;)].size()</stringProp>
                 <stringProp name="EXPECTED_VALUE">${expectedPaxInfantCount}</stringProp>
                 <boolProp name="JSONVALIDATION">true</boolProp>
