@@ -2184,7 +2184,7 @@ vars.put(&quot;adultsIndex&quot;, adultsIndex);</stringProp>
                 <boolProp name="ISREGEX">true</boolProp>
               </JSONPathAssertion>
               <hashTree/>
-              <JSONPathAssertion guiclass="JSONPathAssertionGui" testclass="JSONPathAssertion" testname="Booking is one way" enabled="true">
+              <JSONPathAssertion guiclass="JSONPathAssertionGui" testclass="JSONPathAssertion" testname="Booking has journey" enabled="true">
                 <stringProp name="JSON_PATH">$.booking.journeys.size()</stringProp>
                 <stringProp name="EXPECTED_VALUE">${expectedJourneysCount}</stringProp>
                 <boolProp name="JSONVALIDATION">true</boolProp>
@@ -2193,16 +2193,7 @@ vars.put(&quot;adultsIndex&quot;, adultsIndex);</stringProp>
                 <boolProp name="ISREGEX">false</boolProp>
               </JSONPathAssertion>
               <hashTree/>
-              <JSONPathAssertion guiclass="JSONPathAssertionGui" testclass="JSONPathAssertion" testname="Booking is round trip" enabled="true">
-                <stringProp name="JSON_PATH">$.booking.journeys.size()</stringProp>
-                <stringProp name="EXPECTED_VALUE">${expectedJourneysCount}</stringProp>
-                <boolProp name="JSONVALIDATION">true</boolProp>
-                <boolProp name="EXPECT_NULL">false</boolProp>
-                <boolProp name="INVERT">false</boolProp>
-                <boolProp name="ISREGEX">false</boolProp>
-              </JSONPathAssertion>
-              <hashTree/>
-              <JSONPathAssertion guiclass="JSONPathAssertionGui" testclass="JSONPathAssertion" testname="Booking has only one pax" enabled="true">
+              <JSONPathAssertion guiclass="JSONPathAssertionGui" testclass="JSONPathAssertion" testname="Booking has only pax" enabled="true">
                 <stringProp name="JSON_PATH">$.booking.pax.size()</stringProp>
                 <stringProp name="EXPECTED_VALUE">${expectedPaxCount}</stringProp>
                 <boolProp name="JSONVALIDATION">true</boolProp>
@@ -2224,7 +2215,7 @@ vars.put(&quot;adultsIndex&quot;, adultsIndex);</stringProp>
           </hashTree>
         </hashTree>
       </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="BF2 - Pax Types" enabled="true">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="BF2 - Pax Types" enabled="false">
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
           <boolProp name="LoopController.continue_forever">false</boolProp>
@@ -13292,7 +13283,7 @@ vars.put(&quot;adultsIndex&quot;, adultsIndex);</stringProp>
           </hashTree>
         </hashTree>
       </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="BF7 - Payments" enabled="false">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="BF7 - Payments" enabled="true">
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
           <boolProp name="LoopController.continue_forever">false</boolProp>
@@ -13629,7 +13620,7 @@ SampleResult.setIgnore()
           </JSR223Sampler>
           <hashTree/>
         </hashTree>
-        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="[TESTCASE] OW  1ADT SADAD" enabled="false"/>
+        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="[TESTCASE] OW  1ADT SADAD" enabled="true"/>
         <hashTree>
           <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="[SET] One Way" enabled="true">
             <stringProp name="scriptLanguage">javascript</stringProp>
@@ -13650,7 +13641,9 @@ vars.put(&quot;servicesToSell&quot;,&quot;{\&quot;itemsToSell\&quot;: [ ] }&quot
 vars.put(&quot;ShouldWaitUntilPaymentIsApproved&quot;,&quot;false&quot;);
 
 vars.put(&quot;ShouldBookingBeConfirmed&quot;,&quot;false&quot;);
-vars.put(&quot;outboundDate&quot;,&quot;2021-05-13&quot;);
+vars.put(&quot;outboundDate&quot;,&quot;2021-05-19&quot;);
+vars.put(&quot;expectedPaxCount&quot;, 1);
+vars.put(&quot;expectedJourneysCount&quot;, 1);
 SampleResult.setIgnore()
 </stringProp>
           </JSR223Sampler>
@@ -13684,7 +13677,7 @@ SampleResult.setIgnore()
           </JSR223Sampler>
           <hashTree/>
         </hashTree>
-        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="[PENDING] [TESTCASE] RT  2ADT 1INF VOUCHER-FULL" enabled="true"/>
+        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="[PENDING] [TESTCASE] RT  2ADT 1INF VOUCHER-FULL" enabled="false"/>
         <hashTree>
           <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="[SET] Round Trip" enabled="true">
             <stringProp name="scriptLanguage">javascript</stringProp>
@@ -17036,6 +17029,15 @@ vars.put(&quot;adultsIndex&quot;, adultsIndex);</stringProp>
                       </collectionProp>
                     </HeaderManager>
                     <hashTree/>
+                    <JSONPathAssertion guiclass="JSONPathAssertionGui" testclass="JSONPathAssertion" testname="Booking has pax" enabled="true">
+                      <stringProp name="JSON_PATH">$.booking.pax.size()</stringProp>
+                      <stringProp name="EXPECTED_VALUE">${expectedPaxCount}</stringProp>
+                      <boolProp name="JSONVALIDATION">true</boolProp>
+                      <boolProp name="EXPECT_NULL">false</boolProp>
+                      <boolProp name="INVERT">false</boolProp>
+                      <boolProp name="ISREGEX">false</boolProp>
+                    </JSONPathAssertion>
+                    <hashTree/>
                   </hashTree>
                   <IfController guiclass="IfControllerPanel" testclass="IfController" testname="ShouldValidatePaymentExternally" enabled="true">
                     <stringProp name="IfController.condition">&quot;${ShouldValidatePaymentExternally}&quot; == &quot;true&quot;</stringProp>
@@ -17266,6 +17268,24 @@ vars.put(&quot;adultsIndex&quot;, adultsIndex);</stringProp>
                         <boolProp name="EXPECT_NULL">false</boolProp>
                         <boolProp name="INVERT">false</boolProp>
                         <boolProp name="ISREGEX">true</boolProp>
+                      </JSONPathAssertion>
+                      <hashTree/>
+                      <JSONPathAssertion guiclass="JSONPathAssertionGui" testclass="JSONPathAssertion" testname="Booking has journey" enabled="true">
+                        <stringProp name="JSON_PATH">$.booking.journeys.size()</stringProp>
+                        <stringProp name="EXPECTED_VALUE">${expectedJourneysCount}</stringProp>
+                        <boolProp name="JSONVALIDATION">true</boolProp>
+                        <boolProp name="EXPECT_NULL">false</boolProp>
+                        <boolProp name="INVERT">false</boolProp>
+                        <boolProp name="ISREGEX">false</boolProp>
+                      </JSONPathAssertion>
+                      <hashTree/>
+                      <JSONPathAssertion guiclass="JSONPathAssertionGui" testclass="JSONPathAssertion" testname="Booking has pax" enabled="false">
+                        <stringProp name="JSON_PATH">$.booking.pax.size()</stringProp>
+                        <stringProp name="EXPECTED_VALUE">${expectedPaxCount}</stringProp>
+                        <boolProp name="JSONVALIDATION">true</boolProp>
+                        <boolProp name="EXPECT_NULL">false</boolProp>
+                        <boolProp name="INVERT">false</boolProp>
+                        <boolProp name="ISREGEX">false</boolProp>
                       </JSONPathAssertion>
                       <hashTree/>
                       <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
