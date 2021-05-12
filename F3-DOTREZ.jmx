@@ -2623,7 +2623,7 @@ vars.put(&quot;expectedPaxInfantCount&quot;, 1);
           </JSR223Sampler>
           <hashTree/>
         </hashTree>
-        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="[TESTCASE] OW  2ADT 1CHD 2INF  HOLD" enabled="true"/>
+        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="[TESTCASE] OW  2ADT 1CHD 2INF  HOLD" enabled="false"/>
         <hashTree>
           <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="[SET] One Way" enabled="true">
             <stringProp name="scriptLanguage">javascript</stringProp>
@@ -2675,7 +2675,12 @@ vars.put(&quot;paymentMethod&quot;,&quot;MC&quot;);  // TO BE DEFINED
 vars.put(&quot;servicesToSell&quot;,&quot;{\&quot;itemsToSell\&quot;: [ ] }&quot;); // {\&quot;itemsToSell\&quot;:[{\&quot;paxNumber\&quot;:\&quot;N\&quot;,\&quot;serviceCodes\&quot;:[\&quot;XXX\&quot;,\&quot;YYY\&quot;,...]}]} 
 SampleResult.setIgnore()
 
-</stringProp>
+//Expectations
+vars.put(&quot;expectedPaxCount&quot;, 12);
+vars.put(&quot;expectedJourneysCount&quot;, 2);
+vars.put(&quot;expectedPaxChildCount&quot;, 6);
+vars.put(&quot;expectedPaxAdultCount&quot;, 3);
+vars.put(&quot;expectedPaxInfantCount&quot;, 3);</stringProp>
           </JSR223Sampler>
           <hashTree/>
         </hashTree>
@@ -2697,11 +2702,17 @@ vars.put(&quot;childrenNumber&quot;,&quot;0&quot;);
 vars.put(&quot;infantsNumber&quot;,&quot;9&quot;);
 vars.put(&quot;paymentMethod&quot;,&quot;MC&quot;); // TO BE DEFINED
 vars.put(&quot;servicesToSell&quot;,&quot;{\&quot;itemsToSell\&quot;: [ ] }&quot;); // {\&quot;itemsToSell\&quot;:[{\&quot;paxNumber\&quot;:\&quot;N\&quot;,\&quot;serviceCodes\&quot;:[\&quot;XXX\&quot;,\&quot;YYY\&quot;,...]}]} 
-SampleResult.setIgnore()</stringProp>
+SampleResult.setIgnore();
+
+//Expectations
+vars.put(&quot;expectedPaxCount&quot;, 18);
+vars.put(&quot;expectedJourneysCount&quot;, 1);
+vars.put(&quot;expectedPaxAdultCount&quot;, 9);
+vars.put(&quot;expectedPaxInfantCount&quot;, 9);</stringProp>
           </JSR223Sampler>
           <hashTree/>
         </hashTree>
-        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="[TESTCASE] RT  5ADT 4CHD 5INF  HOLD" enabled="false"/>
+        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="[TESTCASE] RT  5ADT 4CHD 5INF  HOLD" enabled="true"/>
         <hashTree>
           <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="[SET] Round Trip" enabled="true">
             <stringProp name="scriptLanguage">javascript</stringProp>
@@ -2722,7 +2733,13 @@ vars.put(&quot;infantsNumber&quot;,&quot;5&quot;);
 vars.put(&quot;paymentMethod&quot;,&quot;MC&quot;);  // TO BE DEFINED
 vars.put(&quot;servicesToSell&quot;,&quot;{\&quot;itemsToSell\&quot;: [ ] }&quot;); // {\&quot;itemsToSell\&quot;:[{\&quot;paxNumber\&quot;:\&quot;N\&quot;,\&quot;serviceCodes\&quot;:[\&quot;XXX\&quot;,\&quot;YYY\&quot;,...]}]} 
 SampleResult.setIgnore()
-</stringProp>
+
+//Expectations
+vars.put(&quot;expectedPaxCount&quot;, 14);
+vars.put(&quot;expectedJourneysCount&quot;, 2);
+vars.put(&quot;expectedPaxChildCount&quot;, 4);
+vars.put(&quot;expectedPaxAdultCount&quot;, 5);
+vars.put(&quot;expectedPaxInfantCount&quot;, 5);</stringProp>
           </JSR223Sampler>
           <hashTree/>
         </hashTree>
