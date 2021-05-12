@@ -2647,8 +2647,8 @@ SampleResult.setIgnore()
 vars.put(&quot;expectedPaxCount&quot;, 5);
 vars.put(&quot;expectedJourneysCount&quot;, 1);
 vars.put(&quot;expectedPaxChildCount&quot;, 1);
-vars.put(&quot;expectedPaxAdultCount&quot;, 1);
-vars.put(&quot;expectedPaxInfantCount&quot;, 1);
+vars.put(&quot;expectedPaxAdultCount&quot;, 2);
+vars.put(&quot;expectedPaxInfantCount&quot;, 2);
 </stringProp>
           </JSR223Sampler>
           <hashTree/>
@@ -2674,6 +2674,7 @@ vars.put(&quot;infantsNumber&quot;,&quot;3&quot;);
 vars.put(&quot;paymentMethod&quot;,&quot;MC&quot;);  // TO BE DEFINED
 vars.put(&quot;servicesToSell&quot;,&quot;{\&quot;itemsToSell\&quot;: [ ] }&quot;); // {\&quot;itemsToSell\&quot;:[{\&quot;paxNumber\&quot;:\&quot;N\&quot;,\&quot;serviceCodes\&quot;:[\&quot;XXX\&quot;,\&quot;YYY\&quot;,...]}]} 
 SampleResult.setIgnore()
+
 </stringProp>
           </JSR223Sampler>
           <hashTree/>
@@ -4454,16 +4455,7 @@ vars.put(&quot;adultsIndex&quot;, adultsIndex);</stringProp>
                 <boolProp name="ISREGEX">true</boolProp>
               </JSONPathAssertion>
               <hashTree/>
-              <JSONPathAssertion guiclass="JSONPathAssertionGui" testclass="JSONPathAssertion" testname="Booking is one way" enabled="true">
-                <stringProp name="JSON_PATH">$.booking.journeys.size()</stringProp>
-                <stringProp name="EXPECTED_VALUE">${expectedJourneysCount}</stringProp>
-                <boolProp name="JSONVALIDATION">true</boolProp>
-                <boolProp name="EXPECT_NULL">false</boolProp>
-                <boolProp name="INVERT">false</boolProp>
-                <boolProp name="ISREGEX">false</boolProp>
-              </JSONPathAssertion>
-              <hashTree/>
-              <JSONPathAssertion guiclass="JSONPathAssertionGui" testclass="JSONPathAssertion" testname="Booking is round trip" enabled="true">
+              <JSONPathAssertion guiclass="JSONPathAssertionGui" testclass="JSONPathAssertion" testname="Booking has journey" enabled="true">
                 <stringProp name="JSON_PATH">$.booking.journeys.size()</stringProp>
                 <stringProp name="EXPECTED_VALUE">${expectedJourneysCount}</stringProp>
                 <boolProp name="JSONVALIDATION">true</boolProp>
@@ -4482,7 +4474,7 @@ vars.put(&quot;adultsIndex&quot;, adultsIndex);</stringProp>
               </JSONPathAssertion>
               <hashTree/>
               <JSONPathAssertion guiclass="JSONPathAssertionGui" testclass="JSONPathAssertion" testname="Booking has adult pax" enabled="true">
-                <stringProp name="JSON_PATH">$.booking.pax[*].type[?(@.code == &apos;ADT&apos;)].size()</stringProp>
+                <stringProp name="JSON_PATH">$.booking.pax[*].type.[?(@.code == &apos;ADT&apos;)].code.size()</stringProp>
                 <stringProp name="EXPECTED_VALUE">${expectedPaxAdultCount}</stringProp>
                 <boolProp name="JSONVALIDATION">true</boolProp>
                 <boolProp name="EXPECT_NULL">false</boolProp>
@@ -4491,7 +4483,7 @@ vars.put(&quot;adultsIndex&quot;, adultsIndex);</stringProp>
               </JSONPathAssertion>
               <hashTree/>
               <JSONPathAssertion guiclass="JSONPathAssertionGui" testclass="JSONPathAssertion" testname="Booking has child pax" enabled="true">
-                <stringProp name="JSON_PATH">$.booking.pax[*].type[?(@.code == &apos;CHD&apos;)].size()</stringProp>
+                <stringProp name="JSON_PATH">$.booking.pax[*].type[?(@.code == &apos;CHD&apos;)].code.size()</stringProp>
                 <stringProp name="EXPECTED_VALUE">${expectedPaxChildCount}</stringProp>
                 <boolProp name="JSONVALIDATION">true</boolProp>
                 <boolProp name="EXPECT_NULL">false</boolProp>
@@ -4500,7 +4492,7 @@ vars.put(&quot;adultsIndex&quot;, adultsIndex);</stringProp>
               </JSONPathAssertion>
               <hashTree/>
               <JSONPathAssertion guiclass="JSONPathAssertionGui" testclass="JSONPathAssertion" testname="Booking has infant pax" enabled="true">
-                <stringProp name="JSON_PATH">$.booking.pax[*].type[?(@.code == &apos;INF&apos;)].size()</stringProp>
+                <stringProp name="JSON_PATH">$.booking.pax[*].type[?(@.code == &apos;INF&apos;)].code.size()</stringProp>
                 <stringProp name="EXPECTED_VALUE">${expectedPaxInfantCount}</stringProp>
                 <boolProp name="JSONVALIDATION">true</boolProp>
                 <boolProp name="EXPECT_NULL">false</boolProp>
@@ -7038,7 +7030,7 @@ SampleResult.setIgnore()
           </JSR223Sampler>
           <hashTree/>
         </hashTree>
-        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="[TESTCASE] OW  1ADT FLY+  HOLD" enabled="false"/>
+        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="[TESTCASE] OW  1ADT FLY+  HOLD" enabled="true"/>
         <hashTree>
           <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="[SET] One Way" enabled="true">
             <stringProp name="scriptLanguage">javascript</stringProp>
@@ -7065,7 +7057,7 @@ SampleResult.setIgnore()</stringProp>
           </JSR223Sampler>
           <hashTree/>
         </hashTree>
-        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="[TESTCASE] RT  1ADT FLY+  HOLD" enabled="true"/>
+        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="[TESTCASE] RT  1ADT FLY+  HOLD" enabled="false"/>
         <hashTree>
           <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="[SET] Round Trip" enabled="true">
             <stringProp name="scriptLanguage">javascript</stringProp>
