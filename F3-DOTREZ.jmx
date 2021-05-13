@@ -51,18 +51,18 @@
         <collectionProp name="Arguments.arguments">
           <elementProp name="defaultOutboundDate" elementType="Argument">
             <stringProp name="Argument.name">defaultOutboundDate</stringProp>
-            <stringProp name="Argument.value">2021-06-30</stringProp>
+            <stringProp name="Argument.value">2021-06-20</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="defaultReturnDate" elementType="Argument">
             <stringProp name="Argument.name">defaultReturnDate</stringProp>
-            <stringProp name="Argument.value">2021-06-19</stringProp>
+            <stringProp name="Argument.value">2021-06-30</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
         </collectionProp>
       </Arguments>
       <hashTree/>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="BF1 - Trip Types" enabled="false">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="BF1 - Trip Types" enabled="true">
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
           <boolProp name="LoopController.continue_forever">false</boolProp>
@@ -2166,6 +2166,13 @@ vars.put(&quot;adultsIndex&quot;, adultsIndex);</stringProp>
               <stringProp name="HTTPSampler.response_timeout"></stringProp>
             </HTTPSamplerProxy>
             <hashTree>
+              <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="booking" enabled="true">
+                <stringProp name="JSONPostProcessor.referenceNames">booking</stringProp>
+                <stringProp name="JSONPostProcessor.jsonPathExprs">$.booking</stringProp>
+                <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
+                <stringProp name="JSONPostProcessor.defaultValues">NO_DATA</stringProp>
+              </JSONPostProcessor>
+              <hashTree/>
               <JSONPathAssertion guiclass="JSONPathAssertionGui" testclass="JSONPathAssertion" testname="Success response" enabled="true">
                 <stringProp name="JSON_PATH">$.success</stringProp>
                 <stringProp name="EXPECTED_VALUE">true</stringProp>
@@ -2175,7 +2182,37 @@ vars.put(&quot;adultsIndex&quot;, adultsIndex);</stringProp>
                 <boolProp name="ISREGEX">true</boolProp>
               </JSONPathAssertion>
               <hashTree/>
-              <JSONPathAssertion guiclass="JSONPathAssertionGui" testclass="JSONPathAssertion" testname="Booking on hold" enabled="true">
+              <JSR223Assertion guiclass="TestBeanGUI" testclass="JSR223Assertion" testname="JSR223 Assertion" enabled="true">
+                <stringProp name="cacheKey">true</stringProp>
+                <stringProp name="filename"></stringProp>
+                <stringProp name="parameters"></stringProp>
+                <stringProp name="script">var booking = JSON.parse(&apos;${booking}&apos;);
+var countADT = 0;
+
+/*for ( var i = 0; i &lt; booking.pax.length; i++){
+	if (booking.pax[i].type.code == &apos;ADT&apos;){
+		countADT++;			
+	  }	
+	}
+*/
+if (booking.pax.length != ${expectedPaxCount}) {
+	 AssertionResult.setFailureMessage(&quot;Booking has pax failed&quot;);
+	 AssertionResult.setFailure(true);	 	
+}
+if (booking.journeys.length !=  ${expectedJourneysCount}){
+	 AssertionResult.setFailureMessage(&quot;Booking has journey failed&quot;);
+	 AssertionResult.setFailure(true);		
+}
+if (booking.bookingInfo.status != &apos;Hold&apos;){
+	AssertionResult.setFailureMessage(&quot;Booking on hold failed&quot;);
+	AssertionResult.setFailure(true);		
+}
+
+	</stringProp>
+                <stringProp name="scriptLanguage">javascript</stringProp>
+              </JSR223Assertion>
+              <hashTree/>
+              <JSONPathAssertion guiclass="JSONPathAssertionGui" testclass="JSONPathAssertion" testname="Booking on hold" enabled="false">
                 <stringProp name="JSON_PATH">$.booking.bookingInfo.status</stringProp>
                 <stringProp name="EXPECTED_VALUE">Hold</stringProp>
                 <boolProp name="JSONVALIDATION">true</boolProp>
@@ -2184,7 +2221,7 @@ vars.put(&quot;adultsIndex&quot;, adultsIndex);</stringProp>
                 <boolProp name="ISREGEX">true</boolProp>
               </JSONPathAssertion>
               <hashTree/>
-              <JSONPathAssertion guiclass="JSONPathAssertionGui" testclass="JSONPathAssertion" testname="Booking has journey" enabled="true">
+              <JSONPathAssertion guiclass="JSONPathAssertionGui" testclass="JSONPathAssertion" testname="Booking has journey" enabled="false">
                 <stringProp name="JSON_PATH">$.booking.journeys.size()</stringProp>
                 <stringProp name="EXPECTED_VALUE">${expectedJourneysCount}</stringProp>
                 <boolProp name="JSONVALIDATION">true</boolProp>
@@ -2193,7 +2230,7 @@ vars.put(&quot;adultsIndex&quot;, adultsIndex);</stringProp>
                 <boolProp name="ISREGEX">false</boolProp>
               </JSONPathAssertion>
               <hashTree/>
-              <JSONPathAssertion guiclass="JSONPathAssertionGui" testclass="JSONPathAssertion" testname="Booking has only pax" enabled="true">
+              <JSONPathAssertion guiclass="JSONPathAssertionGui" testclass="JSONPathAssertion" testname="Booking has pax" enabled="false">
                 <stringProp name="JSON_PATH">$.booking.pax.size()</stringProp>
                 <stringProp name="EXPECTED_VALUE">${expectedPaxCount}</stringProp>
                 <boolProp name="JSONVALIDATION">true</boolProp>
@@ -6981,7 +7018,7 @@ SampleResult.setIgnore()
           </JSR223Sampler>
           <hashTree/>
         </hashTree>
-        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="[TESTCASE] OW  1ADT FLY  HOLD" enabled="false"/>
+        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="[TESTCASE] OW  1ADT FLY  HOLD" enabled="true"/>
         <hashTree>
           <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="[SET] One Way" enabled="true">
             <stringProp name="scriptLanguage">javascript</stringProp>
@@ -7038,7 +7075,7 @@ SampleResult.setIgnore()
           </JSR223Sampler>
           <hashTree/>
         </hashTree>
-        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="[TESTCASE] OW  1ADT FLY+  HOLD" enabled="true"/>
+        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="[TESTCASE] OW  1ADT FLY+  HOLD" enabled="false"/>
         <hashTree>
           <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="[SET] One Way" enabled="true">
             <stringProp name="scriptLanguage">javascript</stringProp>
@@ -13283,7 +13320,7 @@ vars.put(&quot;adultsIndex&quot;, adultsIndex);</stringProp>
           </hashTree>
         </hashTree>
       </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="BF7 - Payments" enabled="true">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="BF7 - Payments" enabled="false">
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
           <boolProp name="LoopController.continue_forever">false</boolProp>
@@ -13620,7 +13657,7 @@ SampleResult.setIgnore()
           </JSR223Sampler>
           <hashTree/>
         </hashTree>
-        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="[TESTCASE] OW  1ADT SADAD" enabled="true"/>
+        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="[TESTCASE] OW  1ADT SADAD" enabled="false"/>
         <hashTree>
           <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="[SET] One Way" enabled="true">
             <stringProp name="scriptLanguage">javascript</stringProp>
@@ -13644,12 +13681,13 @@ vars.put(&quot;ShouldBookingBeConfirmed&quot;,&quot;false&quot;);
 vars.put(&quot;outboundDate&quot;,&quot;2021-05-19&quot;);
 vars.put(&quot;expectedPaxCount&quot;, 1);
 vars.put(&quot;expectedJourneysCount&quot;, 1);
+vars.put(&quot;expectedPaxAdultCount&quot;, 5);
 SampleResult.setIgnore()
 </stringProp>
           </JSR223Sampler>
           <hashTree/>
         </hashTree>
-        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="[TESTCASE] RT  1ADT 1CHD VISA-NO-3DS" enabled="false"/>
+        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="[TESTCASE] RT  1ADT 1CHD VISA-NO-3DS" enabled="true"/>
         <hashTree>
           <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="[SET] Round Trip" enabled="true">
             <stringProp name="scriptLanguage">javascript</stringProp>
@@ -13671,6 +13709,8 @@ vars.put(&quot;paymentMethod&quot;,&quot;V1&quot;);  // TO BE DEFINED
 vars.put(&quot;servicesToSell&quot;,&quot;{\&quot;itemsToSell\&quot;: [ ] }&quot;); // {\&quot;itemsToSell\&quot;:[{\&quot;paxNumber\&quot;:\&quot;N\&quot;,\&quot;serviceCodes\&quot;:[\&quot;XXX\&quot;,\&quot;YYY\&quot;,...]}]} 
 
 vars.put(&quot;VI_CreditCardNumber&quot;,&quot;4012000033330026&quot;);
+vars.put(&quot;expectedPaxCount&quot;, 2);
+vars.put(&quot;expectedPaxAdultCount&quot;, 2);
 vars.put(&quot;outboundDate&quot;,&quot;2021-05-13&quot;);
 SampleResult.setIgnore()
 </stringProp>
@@ -16964,6 +17004,15 @@ vars.put(&quot;adultsIndex&quot;, adultsIndex);</stringProp>
                     <stringProp name="JSONPostProcessor.defaultValues">NO_DATA</stringProp>
                   </JSONPostProcessor>
                   <hashTree/>
+                  <JSONPathAssertion guiclass="JSONPathAssertionGui" testclass="JSONPathAssertion" testname="Booking has adult pax" enabled="true">
+                    <stringProp name="JSON_PATH">$.booking.pax[*].type.[?(@.code == &apos;ADT&apos;)].code.size()</stringProp>
+                    <stringProp name="EXPECTED_VALUE">${expectedPaxAdultCount}</stringProp>
+                    <boolProp name="JSONVALIDATION">true</boolProp>
+                    <boolProp name="EXPECT_NULL">false</boolProp>
+                    <boolProp name="INVERT">true</boolProp>
+                    <boolProp name="ISREGEX">false</boolProp>
+                  </JSONPathAssertion>
+                  <hashTree/>
                 </hashTree>
                 <IfController guiclass="IfControllerPanel" testclass="IfController" testname="If record locator, then" enabled="true">
                   <stringProp name="IfController.condition">&quot;${recordLocator}&quot; != &quot;NO_DATA&quot;</stringProp>
@@ -17020,15 +17069,6 @@ vars.put(&quot;adultsIndex&quot;, adultsIndex);</stringProp>
                     <stringProp name="HTTPSampler.response_timeout"></stringProp>
                   </HTTPSamplerProxy>
                   <hashTree>
-                    <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
-                      <collectionProp name="HeaderManager.headers">
-                        <elementProp name="" elementType="Header">
-                          <stringProp name="Header.name">ApiKey</stringProp>
-                          <stringProp name="Header.value">${BookingApiKey}</stringProp>
-                        </elementProp>
-                      </collectionProp>
-                    </HeaderManager>
-                    <hashTree/>
                     <JSONPathAssertion guiclass="JSONPathAssertionGui" testclass="JSONPathAssertion" testname="Booking has pax" enabled="true">
                       <stringProp name="JSON_PATH">$.booking.pax.size()</stringProp>
                       <stringProp name="EXPECTED_VALUE">${expectedPaxCount}</stringProp>
@@ -17038,7 +17078,25 @@ vars.put(&quot;adultsIndex&quot;, adultsIndex);</stringProp>
                       <boolProp name="ISREGEX">false</boolProp>
                     </JSONPathAssertion>
                     <hashTree/>
+                    <JSONPathAssertion guiclass="JSONPathAssertionGui" testclass="JSONPathAssertion" testname="Booking has adult pax" enabled="true">
+                      <stringProp name="JSON_PATH">$.booking.pax[*].type.[?(@.code == &apos;ADT&apos;)].code.size()</stringProp>
+                      <stringProp name="EXPECTED_VALUE">${expectedPaxAdultCount}</stringProp>
+                      <boolProp name="JSONVALIDATION">true</boolProp>
+                      <boolProp name="EXPECT_NULL">false</boolProp>
+                      <boolProp name="INVERT">true</boolProp>
+                      <boolProp name="ISREGEX">false</boolProp>
+                    </JSONPathAssertion>
+                    <hashTree/>
                   </hashTree>
+                  <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+                    <collectionProp name="HeaderManager.headers">
+                      <elementProp name="" elementType="Header">
+                        <stringProp name="Header.name">ApiKey</stringProp>
+                        <stringProp name="Header.value">${BookingApiKey}</stringProp>
+                      </elementProp>
+                    </collectionProp>
+                  </HeaderManager>
+                  <hashTree/>
                   <IfController guiclass="IfControllerPanel" testclass="IfController" testname="ShouldValidatePaymentExternally" enabled="true">
                     <stringProp name="IfController.condition">&quot;${ShouldValidatePaymentExternally}&quot; == &quot;true&quot;</stringProp>
                     <boolProp name="IfController.evaluateAll">false</boolProp>
@@ -17279,12 +17337,21 @@ vars.put(&quot;adultsIndex&quot;, adultsIndex);</stringProp>
                         <boolProp name="ISREGEX">false</boolProp>
                       </JSONPathAssertion>
                       <hashTree/>
-                      <JSONPathAssertion guiclass="JSONPathAssertionGui" testclass="JSONPathAssertion" testname="Booking has pax" enabled="false">
+                      <JSONPathAssertion guiclass="JSONPathAssertionGui" testclass="JSONPathAssertion" testname="Booking has pax" enabled="true">
                         <stringProp name="JSON_PATH">$.booking.pax.size()</stringProp>
                         <stringProp name="EXPECTED_VALUE">${expectedPaxCount}</stringProp>
                         <boolProp name="JSONVALIDATION">true</boolProp>
                         <boolProp name="EXPECT_NULL">false</boolProp>
                         <boolProp name="INVERT">false</boolProp>
+                        <boolProp name="ISREGEX">false</boolProp>
+                      </JSONPathAssertion>
+                      <hashTree/>
+                      <JSONPathAssertion guiclass="JSONPathAssertionGui" testclass="JSONPathAssertion" testname="Booking has adult pax" enabled="true">
+                        <stringProp name="JSON_PATH">$.booking.pax[*].type.[?(@.code == &apos;ADT&apos;)].code.size()</stringProp>
+                        <stringProp name="EXPECTED_VALUE">${expectedPaxAdultCount}</stringProp>
+                        <boolProp name="JSONVALIDATION">true</boolProp>
+                        <boolProp name="EXPECT_NULL">false</boolProp>
+                        <boolProp name="INVERT">true</boolProp>
                         <boolProp name="ISREGEX">false</boolProp>
                       </JSONPathAssertion>
                       <hashTree/>
@@ -17662,8 +17729,13 @@ vars.put(&quot;paymentMethod&quot;,&quot;V1&quot;);  // TO BE DEFINED
 vars.put(&quot;servicesToSell&quot;,&quot;{\&quot;itemsToSell\&quot;:[{\&quot;paxNumber\&quot;:\&quot;0\&quot;,\&quot;serviceCodes\&quot;:[\&quot;XP25\&quot;,\&quot;XP25\&quot;]}]}&quot;);
 
 vars.put(&quot;VI_CreditCardNumber&quot;,&quot;4012000033330026&quot;);
-vars.put(&quot;outboundDate&quot;,&quot;2021-05-13&quot;);
+vars.put(&quot;outboundDate&quot;,&quot;2021-05-14&quot;);
 SampleResult.setIgnore()
+
+//Expectations
+vars.put(&quot;expectedPaxCount&quot;, 14);
+//vars.put(&quot;ShouldBookingBeConfirmed&quot;, true);
+
 </stringProp>
           </JSR223Sampler>
           <hashTree/>
@@ -19551,7 +19623,7 @@ var paxesToSellServices = servicesToSell.itemsToSell.length;
 vars.put(&quot;paxesToSellServices&quot;, paxesToSellServices);
 vars.put(&quot;paxToSellServicesIndex&quot;, 1);
 log.info(&quot;&apos;pax to sell sevices&apos; script evaluated correctly. Total pax to be processed: &quot; + paxesToSellServices);
-SampleResult.setIgnore();</stringProp>
+//SampleResult.setIgnore();</stringProp>
                 <stringProp name="scriptLanguage">javascript</stringProp>
               </JSR223Sampler>
               <hashTree/>
@@ -19569,7 +19641,7 @@ var servicesToSellForCurrentPax = servicesToSell.itemsToSell[paxToSellServicesIn
 vars.put(&quot;servicesToSellForCurrentPax&quot;,servicesToSellForCurrentPax);
 vars.put(&quot;servicesForPaxToSellIndex&quot;,1);
 log.info(&quot;&apos;services to sell for currentPax&apos; script evaluated correctly. Total services: &quot;+servicesToSellForCurrentPax);
-SampleResult.setIgnore();</stringProp>
+//SampleResult.setIgnore();</stringProp>
                   <stringProp name="scriptLanguage">javascript</stringProp>
                 </JSR223Sampler>
                 <hashTree/>
@@ -19605,7 +19677,7 @@ for(var i=0;i&lt;pricedServices.length;i++)
 		log.info(&quot;&apos;Service request values extractor&apos; script evaluated correctly. Detected service: &quot;+currentServiceCodeToSell+ &quot; for pax &quot; + paxIdToSellService);		
 	}
 }
-SampleResult.setIgnore();</stringProp>
+//SampleResult.setIgnore();</stringProp>
                     <stringProp name="scriptLanguage">javascript</stringProp>
                   </JSR223Sampler>
                   <hashTree/>
@@ -19683,7 +19755,7 @@ vars.put(&quot;serviceSellIndex&quot;, serviceSellIndex);</stringProp>
 servicesForPaxToSellIndex = servicesForPaxToSellIndex + 1;
 vars.put(&apos;servicesForPaxToSellIndex&apos;, servicesForPaxToSellIndex);
 log.info(&quot;&apos;servicesForPaxToSellIndex increment&apos; script evaluated correctly. New index value:&quot;+servicesForPaxToSellIndex);
-SampleResult.setIgnore();</stringProp>
+//SampleResult.setIgnore();</stringProp>
                     <stringProp name="scriptLanguage">javascript</stringProp>
                   </JSR223Sampler>
                   <hashTree/>
@@ -19696,7 +19768,7 @@ SampleResult.setIgnore();</stringProp>
 paxToSellServicesIndex = paxToSellServicesIndex + 1;
 vars.put(&apos;paxToSellServicesIndex&apos;, paxToSellServicesIndex);
 log.info(&quot;&apos;paxToSellServicesIndex increment&apos; script evaluated correctly. New index value:&quot;+paxToSellServicesIndex);
-SampleResult.setIgnore();</stringProp>
+//SampleResult.setIgnore();</stringProp>
                   <stringProp name="scriptLanguage">javascript</stringProp>
                 </JSR223Sampler>
                 <hashTree/>
@@ -21418,6 +21490,15 @@ SampleResult.setIgnore();</stringProp>
                           </collectionProp>
                         </HeaderManager>
                         <hashTree/>
+                        <JSONPathAssertion guiclass="JSONPathAssertionGui" testclass="JSONPathAssertion" testname="Booking has pax" enabled="false">
+                          <stringProp name="JSON_PATH">$.booking.pax.size()</stringProp>
+                          <stringProp name="EXPECTED_VALUE">${expectedPaxCount}</stringProp>
+                          <boolProp name="JSONVALIDATION">true</boolProp>
+                          <boolProp name="EXPECT_NULL">false</boolProp>
+                          <boolProp name="INVERT">false</boolProp>
+                          <boolProp name="ISREGEX">false</boolProp>
+                        </JSONPathAssertion>
+                        <hashTree/>
                         <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="isPaymentApproved" enabled="true">
                           <stringProp name="JSONPostProcessor.referenceNames">isPaymentApproved</stringProp>
                           <stringProp name="JSONPostProcessor.jsonPathExprs">$..payments..status</stringProp>
@@ -21521,6 +21602,15 @@ SampleResult.setIgnore();</stringProp>
                         <boolProp name="EXPECT_NULL">false</boolProp>
                         <boolProp name="INVERT">false</boolProp>
                         <boolProp name="ISREGEX">true</boolProp>
+                      </JSONPathAssertion>
+                      <hashTree/>
+                      <JSONPathAssertion guiclass="JSONPathAssertionGui" testclass="JSONPathAssertion" testname="Booking has pax" enabled="true">
+                        <stringProp name="JSON_PATH">$.booking.pax.size()</stringProp>
+                        <stringProp name="EXPECTED_VALUE">${expectedPaxCount}</stringProp>
+                        <boolProp name="JSONVALIDATION">true</boolProp>
+                        <boolProp name="EXPECT_NULL">false</boolProp>
+                        <boolProp name="INVERT">false</boolProp>
+                        <boolProp name="ISREGEX">false</boolProp>
                       </JSONPathAssertion>
                       <hashTree/>
                       <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
