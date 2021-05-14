@@ -51,7 +51,7 @@
         <collectionProp name="Arguments.arguments">
           <elementProp name="defaultOutboundDate" elementType="Argument">
             <stringProp name="Argument.name">defaultOutboundDate</stringProp>
-            <stringProp name="Argument.value">2021-06-21</stringProp>
+            <stringProp name="Argument.value">2021-06-15</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="defaultReturnDate" elementType="Argument">
@@ -2245,7 +2245,7 @@ if (booking.bookingInfo.status != &apos;Hold&apos;){
           </hashTree>
         </hashTree>
       </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="BF2 - Pax Types" enabled="true">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="BF2 - Pax Types" enabled="false">
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
           <boolProp name="LoopController.continue_forever">false</boolProp>
@@ -2582,7 +2582,7 @@ SampleResult.setIgnore()
           </JSR223Sampler>
           <hashTree/>
         </hashTree>
-        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="[TESTCASE] OW  1ADT 1CHD  HOLD" enabled="false"/>
+        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="[TESTCASE] OW  1ADT 1CHD  HOLD" enabled="true"/>
         <hashTree>
           <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="[SET] One Way" enabled="true">
             <stringProp name="scriptLanguage">javascript</stringProp>
@@ -2735,7 +2735,7 @@ vars.put(&quot;expectedPaxInfantCount&quot;, 9);</stringProp>
           </JSR223Sampler>
           <hashTree/>
         </hashTree>
-        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="[TESTCASE] RT  5ADT 4CHD 5INF  HOLD" enabled="true"/>
+        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="[TESTCASE] RT  5ADT 4CHD 5INF  HOLD" enabled="false"/>
         <hashTree>
           <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="[SET] Round Trip" enabled="true">
             <stringProp name="scriptLanguage">javascript</stringProp>
@@ -17426,7 +17426,7 @@ vars.put(&quot;adultsIndex&quot;, adultsIndex);</stringProp>
           </hashTree>
         </hashTree>
       </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="[DRAFT] BF8 - Baggage" enabled="false">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="[DRAFT] BF8 - Baggage" enabled="true">
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
           <boolProp name="LoopController.continue_forever">false</boolProp>
@@ -17763,7 +17763,7 @@ SampleResult.setIgnore()
           </JSR223Sampler>
           <hashTree/>
         </hashTree>
-        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="[TESTCASE] OW  1ADT FLY 25KG VISA-NO-3DS" enabled="true"/>
+        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="[TESTCASE] OW  1ADT FLY 25KG VISA-NO-3DS" enabled="false"/>
         <hashTree>
           <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="[SET] One way" enabled="true">
             <stringProp name="scriptLanguage">javascript</stringProp>
@@ -17780,15 +17780,179 @@ vars.put(&quot;teenageNumber&quot;,&quot;0&quot;);
 vars.put(&quot;childrenNumber&quot;,&quot;0&quot;);
 vars.put(&quot;infantsNumber&quot;,&quot;0&quot;);
 vars.put(&quot;paymentMethod&quot;,&quot;V1&quot;);  // TO BE DEFINED
-vars.put(&quot;servicesToSell&quot;,&quot;{\&quot;itemsToSell\&quot;:[{\&quot;paxNumber\&quot;:\&quot;0\&quot;,\&quot;serviceCodes\&quot;:[\&quot;XP25\&quot;,\&quot;XP25\&quot;]}]}&quot;);
+vars.put(&quot;servicesToSell&quot;,&quot;{\&quot;itemsToSell\&quot;:[{\&quot;paxNumber\&quot;:\&quot;0\&quot;,\&quot;serviceCodes\&quot;:[\&quot;XP25\&quot;]}]}&quot;);
 
 vars.put(&quot;VI_CreditCardNumber&quot;,&quot;4012000033330026&quot;);
-vars.put(&quot;outboundDate&quot;,&quot;2021-05-14&quot;);
+vars.put(&quot;outboundDate&quot;,&quot;2021-06-20&quot;);
 SampleResult.setIgnore()
 
 //Expectations
-vars.put(&quot;expectedPaxCount&quot;, 14);
-//vars.put(&quot;ShouldBookingBeConfirmed&quot;, true);
+vars.put(&quot;expectedPaxCount&quot;, 1);
+vars.put(&quot;ShouldBookingBeConfirmed&quot;, true);
+vars.put(&quot;expectedJourneysCount&quot;, 1);
+vars.put(&quot;expectedPaxChildCount&quot;, 0);
+vars.put(&quot;expectedPaxAdultCount&quot;, 1);
+vars.put(&quot;expectedPaxInfantCount&quot;, 0);
+vars.put(&quot;expectedPaxBaggage15Count&quot;, 0);
+vars.put(&quot;expectedPaxBaggage25Count&quot;, 1);
+vars.put(&quot;expectedoutboundProductClass&quot;, &quot;YA&quot;);
+
+</stringProp>
+          </JSR223Sampler>
+          <hashTree/>
+        </hashTree>
+        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="[TESTCASE] RT  1ADT FLY+ 25KG VISA-NO-3DS" enabled="false"/>
+        <hashTree>
+          <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="[SET] Round Trip" enabled="true">
+            <stringProp name="scriptLanguage">javascript</stringProp>
+            <stringProp name="parameters"></stringProp>
+            <stringProp name="filename"></stringProp>
+            <stringProp name="cacheKey">true</stringProp>
+            <stringProp name="script">vars.put(&quot;origin&quot;,&quot;JED&quot;);
+vars.put(&quot;destination&quot;,&quot;RUH&quot;);
+vars.put(&quot;tripType&quot;,&quot;RT&quot;);  // OW / RT
+vars.put(&quot;outboundDate&quot;,&quot;${defaultOutboundDate}&quot;);
+vars.put(&quot;returnDate&quot;,&quot;${defaultReturnDate}&quot;);
+vars.put(&quot;outboundProductClass&quot;,&quot;YB&quot;); // TO BE DEFINED
+vars.put(&quot;returnProductClass&quot;,&quot;YB&quot;);
+vars.put(&quot;adultsNumber&quot;,&quot;1&quot;);
+vars.put(&quot;teenageNumber&quot;,&quot;0&quot;);
+vars.put(&quot;childrenNumber&quot;,&quot;0&quot;);
+vars.put(&quot;infantsNumber&quot;,&quot;0&quot;);
+vars.put(&quot;paymentMethod&quot;,&quot;V1&quot;);  // TO BE DEFINED
+vars.put(&quot;servicesToSell&quot;,&quot;{\&quot;itemsToSell\&quot;:[{\&quot;paxNumber\&quot;:\&quot;0\&quot;,\&quot;serviceCodes\&quot;:[\&quot;XP25\&quot;]}]}&quot;);
+
+vars.put(&quot;VI_CreditCardNumber&quot;,&quot;4012000033330026&quot;);
+vars.put(&quot;outboundDate&quot;,&quot;2021-06-20&quot;);
+SampleResult.setIgnore()
+
+//Expectations
+vars.put(&quot;expectedPaxCount&quot;, 1);
+vars.put(&quot;ShouldBookingBeConfirmed&quot;, true);
+vars.put(&quot;expectedJourneysCount&quot;, 2);
+vars.put(&quot;expectedPaxChildCount&quot;, 0);
+vars.put(&quot;expectedPaxAdultCount&quot;, 1);
+vars.put(&quot;expectedPaxInfantCount&quot;, 0);
+vars.put(&quot;expectedPaxBaggage25Count&quot;, 3);
+vars.put(&quot;expectedPaxBaggage15Count&quot;, 0);
+vars.put(&quot;expectedoutboundProductClass&quot;, &quot;YB&quot;);
+
+</stringProp>
+          </JSR223Sampler>
+          <hashTree/>
+        </hashTree>
+        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="[TESTCASE] OW  1ADT 1CHD 1INF FLY 25KG X2 VISA-NO-3DS" enabled="false"/>
+        <hashTree>
+          <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="[SET] One Way" enabled="true">
+            <stringProp name="scriptLanguage">javascript</stringProp>
+            <stringProp name="parameters"></stringProp>
+            <stringProp name="filename"></stringProp>
+            <stringProp name="cacheKey">true</stringProp>
+            <stringProp name="script">vars.put(&quot;origin&quot;,&quot;JED&quot;);
+vars.put(&quot;destination&quot;,&quot;RUH&quot;);
+vars.put(&quot;tripType&quot;,&quot;OW&quot;);  // OW / RT
+vars.put(&quot;outboundDate&quot;,&quot;${defaultOutboundDate}&quot;);
+vars.put(&quot;outboundProductClass&quot;,&quot;YA&quot;); // TO BE DEFINED
+vars.put(&quot;adultsNumber&quot;,&quot;1&quot;);
+vars.put(&quot;teenageNumber&quot;,&quot;0&quot;);
+vars.put(&quot;childrenNumber&quot;,&quot;1&quot;);
+vars.put(&quot;infantsNumber&quot;,&quot;1&quot;);
+vars.put(&quot;paymentMethod&quot;,&quot;V1&quot;);  // TO BE DEFINED
+vars.put(&quot;servicesToSell&quot;,&quot;{\&quot;itemsToSell\&quot;:[{\&quot;paxNumber\&quot;:\&quot;0\&quot;,\&quot;serviceCodes\&quot;:[\&quot;XP25\&quot;,\&quot;XP25\&quot;]}]}&quot;);
+
+vars.put(&quot;VI_CreditCardNumber&quot;,&quot;4012000033330026&quot;);
+vars.put(&quot;outboundDate&quot;,&quot;2021-06-20&quot;);
+SampleResult.setIgnore()
+
+
+//Expectations
+vars.put(&quot;expectedPaxCount&quot;, 3);
+vars.put(&quot;ShouldBookingBeConfirmed&quot;, true);
+vars.put(&quot;expectedJourneysCount&quot;, 1);
+vars.put(&quot;expectedPaxChildCount&quot;, 1);
+vars.put(&quot;expectedPaxAdultCount&quot;, 1);
+vars.put(&quot;expectedPaxInfantCount&quot;, 1);
+vars.put(&quot;expectedPaxBaggage15Count&quot;, 0);
+vars.put(&quot;expectedPaxBaggage25Count&quot;, 2);
+vars.put(&quot;expectedoutboundProductClass&quot;, &quot;YA&quot;);
+
+</stringProp>
+          </JSR223Sampler>
+          <hashTree/>
+        </hashTree>
+        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="[TESTCASE] RT  3ADT 2CHD 2INF FLY+ 25KG X2 VISA-NO-3DS" enabled="true"/>
+        <hashTree>
+          <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="[SET] Round Trip" enabled="true">
+            <stringProp name="scriptLanguage">javascript</stringProp>
+            <stringProp name="parameters"></stringProp>
+            <stringProp name="filename"></stringProp>
+            <stringProp name="cacheKey">true</stringProp>
+            <stringProp name="script">vars.put(&quot;origin&quot;,&quot;JED&quot;);
+vars.put(&quot;destination&quot;,&quot;RUH&quot;);
+vars.put(&quot;tripType&quot;,&quot;RT&quot;);  // OW / RT
+vars.put(&quot;outboundDate&quot;,&quot;${defaultOutboundDate}&quot;);
+vars.put(&quot;returnDate&quot;,&quot;${defaultReturnDate}&quot;);
+vars.put(&quot;outboundProductClass&quot;,&quot;YB&quot;); // TO BE DEFINED
+vars.put(&quot;returnProductClass&quot;,&quot;YB&quot;);
+vars.put(&quot;adultsNumber&quot;,&quot;3&quot;);
+vars.put(&quot;teenageNumber&quot;,&quot;0&quot;);
+vars.put(&quot;childrenNumber&quot;,&quot;2&quot;);
+vars.put(&quot;infantsNumber&quot;,&quot;2&quot;);
+vars.put(&quot;paymentMethod&quot;,&quot;V1&quot;);  // TO BE DEFINED
+vars.put(&quot;servicesToSell&quot;,&quot;{\&quot;itemsToSell\&quot;:[{\&quot;paxNumber\&quot;:\&quot;0\&quot;,\&quot;serviceCodes\&quot;:[\&quot;XP25\&quot;,\&quot;XP25\&quot;]}]}&quot;);
+
+vars.put(&quot;VI_CreditCardNumber&quot;,&quot;4012000033330026&quot;);
+vars.put(&quot;outboundDate&quot;,&quot;2021-06-20&quot;);
+SampleResult.setIgnore()
+
+//Expectations
+vars.put(&quot;expectedPaxCount&quot;, 7);
+vars.put(&quot;ShouldBookingBeConfirmed&quot;, true);
+vars.put(&quot;expectedJourneysCount&quot;, 2);
+vars.put(&quot;expectedPaxChildCount&quot;, 2);
+vars.put(&quot;expectedPaxAdultCount&quot;, 3);
+vars.put(&quot;expectedPaxInfantCount&quot;, 2);
+vars.put(&quot;expectedPaxBaggage25Count&quot;, 12);
+vars.put(&quot;expectedPaxBaggage15Count&quot;, 0);
+vars.put(&quot;expectedoutboundProductClass&quot;, &quot;YB&quot;);
+
+</stringProp>
+          </JSR223Sampler>
+          <hashTree/>
+        </hashTree>
+        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="[TESTCASE] OW  1ADT FLY 15KG  25KG VISA-NO-3DS" enabled="false"/>
+        <hashTree>
+          <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="[SET] One way" enabled="true">
+            <stringProp name="scriptLanguage">javascript</stringProp>
+            <stringProp name="parameters"></stringProp>
+            <stringProp name="filename"></stringProp>
+            <stringProp name="cacheKey">true</stringProp>
+            <stringProp name="script">vars.put(&quot;origin&quot;,&quot;JED&quot;);
+vars.put(&quot;destination&quot;,&quot;RUH&quot;);
+vars.put(&quot;tripType&quot;,&quot;OW&quot;);  // OW / RT
+vars.put(&quot;outboundDate&quot;,&quot;${defaultOutboundDate}&quot;);
+vars.put(&quot;outboundProductClass&quot;,&quot;YA&quot;); // TO BE DEFINED
+vars.put(&quot;adultsNumber&quot;,&quot;1&quot;);
+vars.put(&quot;teenageNumber&quot;,&quot;0&quot;);
+vars.put(&quot;childrenNumber&quot;,&quot;0&quot;);
+vars.put(&quot;infantsNumber&quot;,&quot;0&quot;);
+vars.put(&quot;paymentMethod&quot;,&quot;V1&quot;);  // TO BE DEFINED
+vars.put(&quot;servicesToSell&quot;,&quot;{\&quot;itemsToSell\&quot;:[{\&quot;paxNumber\&quot;:\&quot;0\&quot;,\&quot;serviceCodes\&quot;:[\&quot;XP25\&quot;,\&quot;XP15\&quot;]}]}&quot;);
+
+vars.put(&quot;VI_CreditCardNumber&quot;,&quot;4012000033330026&quot;);
+vars.put(&quot;outboundDate&quot;,&quot;2021-06-20&quot;);
+SampleResult.setIgnore()
+
+//Expectations
+vars.put(&quot;expectedPaxCount&quot;, 1);
+vars.put(&quot;ShouldBookingBeConfirmed&quot;, true);
+vars.put(&quot;expectedJourneysCount&quot;, 1);
+vars.put(&quot;expectedPaxChildCount&quot;, 0);
+vars.put(&quot;expectedPaxAdultCount&quot;, 1);
+vars.put(&quot;expectedPaxInfantCount&quot;, 0);
+vars.put(&quot;expectedPaxBaggage15Count&quot;, 1);
+vars.put(&quot;expectedPaxBaggage25Count&quot;, 1);
+vars.put(&quot;expectedoutboundProductClass&quot;, &quot;YA&quot;);
 
 </stringProp>
           </JSR223Sampler>
@@ -18963,7 +19127,7 @@ for (var i=0; i&lt; booking.pax.length; i++)
 
 vars.put(&quot;paxId&quot;, pax.id);
 vars.put(&quot;currentAdultReferenceId&quot;, pax.referenceId);
-SampleResult.setIgnore();</stringProp>
+//SampleResult.setIgnore();</stringProp>
                 </JSR223Sampler>
                 <hashTree/>
                 <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="[SET] Adult info" enabled="true">
@@ -19062,7 +19226,7 @@ for (var i=0; i&lt; booking.pax.length; i++)
 
 vars.put(&quot;paxId&quot;, pax.id);
 vars.put(&quot;currentTeenageReferenceId&quot;, pax.referenceId);
-SampleResult.setIgnore();</stringProp>
+//SampleResult.setIgnore();</stringProp>
                 </JSR223Sampler>
                 <hashTree/>
                 <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="[SET] Teenager info" enabled="true">
@@ -19160,7 +19324,7 @@ for (var i=0; i&lt; booking.pax.length; i++)
 
 vars.put(&quot;paxId&quot;, pax.id);
 vars.put(&quot;currentChildReferenceId&quot;, pax.referenceId);
-SampleResult.setIgnore();</stringProp>
+//SampleResult.setIgnore();</stringProp>
                 </JSR223Sampler>
                 <hashTree/>
                 <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="[SET] Child info" enabled="true">
@@ -19258,7 +19422,7 @@ for (var i=0; i&lt; booking.pax.length; i++)
 
 vars.put(&quot;paxId&quot;, pax.id);
 vars.put(&quot;currentInfantReferenceId&quot;, pax.referenceId);
-SampleResult.setIgnore();</stringProp>
+//SampleResult.setIgnore();</stringProp>
                 </JSR223Sampler>
                 <hashTree/>
                 <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="[SET] Infant info" enabled="true">
@@ -21640,6 +21804,13 @@ log.info(&quot;&apos;paxToSellServicesIndex increment&apos; script evaluated cor
                       <stringProp name="HTTPSampler.response_timeout"></stringProp>
                     </HTTPSamplerProxy>
                     <hashTree>
+                      <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="booking" enabled="true">
+                        <stringProp name="JSONPostProcessor.referenceNames">booking</stringProp>
+                        <stringProp name="JSONPostProcessor.jsonPathExprs">$.booking</stringProp>
+                        <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
+                        <stringProp name="JSONPostProcessor.defaultValues">NO_DATA</stringProp>
+                      </JSONPostProcessor>
+                      <hashTree/>
                       <JSONPathAssertion guiclass="JSONPathAssertionGui" testclass="JSONPathAssertion" testname="Success response" enabled="true">
                         <stringProp name="JSON_PATH">$.success</stringProp>
                         <stringProp name="EXPECTED_VALUE">true</stringProp>
@@ -21649,7 +21820,7 @@ log.info(&quot;&apos;paxToSellServicesIndex increment&apos; script evaluated cor
                         <boolProp name="ISREGEX">true</boolProp>
                       </JSONPathAssertion>
                       <hashTree/>
-                      <JSONPathAssertion guiclass="JSONPathAssertionGui" testclass="JSONPathAssertion" testname="Booking on confirmed" enabled="true">
+                      <JSONPathAssertion guiclass="JSONPathAssertionGui" testclass="JSONPathAssertion" testname="Booking on confirmed" enabled="false">
                         <stringProp name="JSON_PATH">$.booking.bookingInfo.status</stringProp>
                         <stringProp name="EXPECTED_VALUE">Confirmed</stringProp>
                         <boolProp name="JSONVALIDATION">true</boolProp>
@@ -21658,7 +21829,83 @@ log.info(&quot;&apos;paxToSellServicesIndex increment&apos; script evaluated cor
                         <boolProp name="ISREGEX">true</boolProp>
                       </JSONPathAssertion>
                       <hashTree/>
-                      <JSONPathAssertion guiclass="JSONPathAssertionGui" testclass="JSONPathAssertion" testname="Booking has pax" enabled="true">
+                      <JSR223Assertion guiclass="TestBeanGUI" testclass="JSR223Assertion" testname="JSR223 Assertion" enabled="true">
+                        <stringProp name="cacheKey">true</stringProp>
+                        <stringProp name="filename"></stringProp>
+                        <stringProp name="parameters"></stringProp>
+                        <stringProp name="script">var booking = JSON.parse(&apos;${booking}&apos;);
+var productClass = vars.get(&quot;expectedoutboundProductClass&quot;);
+var countADT = 0;
+var countINF = 0;
+var countCHD = 0;
+var countBAG25 = 0;
+var countBAG15 = 0;
+
+if (booking.bookingInfo.status != &apos;Confirmed&apos;){
+	assertFail(&apos;Booking confirmed is failed&apos;);		
+}
+if (booking.journeys.length !=  ${expectedJourneysCount}){
+	assertFail(&apos;Booking has journey failed&apos;);	
+}
+if (booking.pax.length != ${expectedPaxCount}) {
+	assertFail(&apos;Booking has journey failed&apos;);	
+}
+
+for (var i = 0; i &lt; booking.pax.length; i++){
+	if (booking.pax[i].type.code == &apos;ADT&apos;){
+		countADT++;			
+	  }	
+	if (booking.pax[i].type.code == &apos;INF&apos;){
+		countINF++;			
+	  }	
+	if (booking.pax[i].type.code == &apos;CHD&apos;){
+		countCHD++;			
+	  }		  
+}
+
+if (countADT != ${expectedPaxAdultCount}) {
+	assertFail(&apos;Booking has adult pax failed&apos;);	
+}
+if (countINF != ${expectedPaxInfantCount}) {
+	assertFail(&apos;Booking has infant pax failed&apos;);	
+}
+if (countCHD != ${expectedPaxChildCount}) {
+	assertFail(&apos;Booking has child pax failed&apos;);	
+}
+
+if (booking.journeys[0].fares[0].productClass != productClass) {
+	assertFail(&apos;Booking has fly failed&apos;);	
+}
+
+for (var i = 0; i &lt; booking.services.length; i++){	
+	if (booking.services[i].type == &apos;Baggage&apos; &amp;&amp; booking.services[i].code == &apos;XP25&apos;){
+		countBAG25++;				
+     }	
+	if (booking.services[i].type == &apos;Baggage&apos; &amp;&amp; booking.services[i].code == &apos;XP15&apos;){
+		countBAG15++;				
+	}	
+ }	    		
+
+
+if (countBAG25 != ${expectedPaxBaggage25Count} ){
+	assertFail(&apos;Booking has baggage 25k failed&apos;);
+}
+if (countBAG15 != ${expectedPaxBaggage15Count} ){
+	assertFail(&apos;Booking has baggage 15k failed&apos;);
+}
+
+function assertFail(messageError){
+	 AssertionResult.setFailureMessage(messageError);
+	 AssertionResult.setFailure(true);	 		
+}
+
+
+
+	</stringProp>
+                        <stringProp name="scriptLanguage">javascript</stringProp>
+                      </JSR223Assertion>
+                      <hashTree/>
+                      <JSONPathAssertion guiclass="JSONPathAssertionGui" testclass="JSONPathAssertion" testname="Booking has pax" enabled="false">
                         <stringProp name="JSON_PATH">$.booking.pax.size()</stringProp>
                         <stringProp name="EXPECTED_VALUE">${expectedPaxCount}</stringProp>
                         <boolProp name="JSONVALIDATION">true</boolProp>
